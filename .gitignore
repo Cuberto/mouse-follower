@@ -1,0 +1,28 @@
+# System
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+Desktop.ini
+Thumbs.db
+ehthumbs.db
+
+# IDEs
+nbproject/
+.idea
+*.iml
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# ENVs
+node_modules
+bower_components
+.env
+
+# Project
+/tmp/
+package-lock.json
