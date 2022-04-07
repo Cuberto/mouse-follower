@@ -1,0 +1,27 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": [
+		"eslint:recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"rules": {
+		"require-jsdoc": "off",
+		"indent": [
+			"error",
+			4
+		],
+		"no-prototype-builtins": "off",
+		"max-len": [
+			"error",
+			{
+				"code": 120
+			}
+		]
+	}
+}
