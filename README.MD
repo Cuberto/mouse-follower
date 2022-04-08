@@ -1,5 +1,11 @@
 # Cuberto Mouse Follower
 
+<a href="https://www.npmjs.com/package/mouse-follower"><img src="https://img.shields.io/npm/v/mouse-follower" alt="NPM Version"></a>
+<a href="LICENCE"><img src="https://img.shields.io/github/license/Cuberto/mouse-follower" alt="Licence"></a>
+<img src="https://img.shields.io/github/size/Cuberto/mouse-follower/dist/mouse-follower.js?label=size" alt="Bundle file size">
+<img src="http://img.badgesize.io/Cuberto/mouse-follower/dev/dist/mouse-follower.js?label=gzip%20size&compression=gzip" alt="Bundle file size (gzip)">
+<a href="https://npmcharts.com/compare/mouse-follower?minimal=true"><img src="https://img.shields.io/npm/dm/mouse-follower" alt="NPM Downloads"></a>
+
 A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.
 
 ![demo](https://user-images.githubusercontent.com/11841379/162477170-5dd33ecd-0e72-4fe4-9053-53d7b5557637.gif)
@@ -384,3 +390,16 @@ const cursor = new MouseFollower();
 
 cursor.destroy();
 ```
+
+## Examples of use
+
+- [Cuberto](https://cuberto.com/): Leading digital agency.
+- [Potion](https://www.sendpotion.com/): Video email for top sales professionals.
+- [NANA](https://nana-asia.com/): Digital Magazine and Media Company in Asia.
+- [Wickret](https://wickret.cuberto.com/): 100% digital bank designed for you.
+- [Papumba](https://www.papumba.com/): Educational platform for kids.
+- [Safe Security](https://www.safe.security/): Cyber Risk Quantification For Enterprises.
+
+## License
+
+[The MIT License (MIT)](LICENSE)
