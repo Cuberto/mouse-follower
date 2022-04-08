@@ -10,6 +10,10 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
+	"ignorePatterns": [
+		"./dist/**/*",
+		"./src/scss/**/*"
+	],
 	"rules": {
 		"require-jsdoc": "off",
 		"indent": [

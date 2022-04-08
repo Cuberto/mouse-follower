@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "webpack --mode development --watch",
 		"build": "webpack --mode production",
-		"lint": "eslint src/*"
+		"lint": "eslint src/* --no-error-on-unmatched-pattern"
 	},
 	"repository": {
 		"type": "git",
