@@ -2,6 +2,8 @@
 
 A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.
 
+![demo](https://user-images.githubusercontent.com/11841379/162477170-5dd33ecd-0e72-4fe4-9053-53d7b5557637.gif)
+
 ## Dependencies
 
 GSAP v3 (https://greensock.com/gsap/)
