@@ -1,13 +1,13 @@
 /*!
  * Cuberto Mouse Follower
  *
- * @version 1.0.0
+ * @version 1.0.1
  * @author Cuberto | Artem Dordzhiev (Draft)
  */
 
 export default class MouseFollower {
     /**
-     * Register the GSAP animation library.
+     * Register GSAP animation library.
      *
      * @param {GSAP} gsap GSAP library.
      */
@@ -26,29 +26,29 @@ export default class MouseFollower {
      * @param {string} options.mediaClassName Media element class name.
      * @param {string} options.mediaBoxClassName Media inner element class name.
      * @param {string} options.iconSvgClassName SVG sprite class name.
-     * @param {string} options.iconSvgNamePrefix SVG sprite class name prefix of icon.
-     * @param {string} options.iconSvgSrc SVG sprite source. If you are not using SVG sprites leave this blank.
+     * @param {string} options.iconSvgNamePrefix SVG sprite icon class name prefix.
+     * @param {string} options.iconSvgSrc SVG sprite source.
      * @param {string|null} options.dataAttr Name of data attribute for changing cursor state directly in HTML.
-     * @param {string} options.hiddenState Hidden class name state.
-     * @param {string} options.textState Text class name state.
-     * @param {string} options.iconState Icon class name state.
-     * @param {string} options.activeState Active (mousedown) class name state.
-     * @param {string} options.mediaState Media (image/video) class name state.
+     * @param {string} options.hiddenState Hidden state name.
+     * @param {string} options.textState Text state name.
+     * @param {string} options.iconState Icon state name.
+     * @param {string} options.activeState Active (mousedown) state name.
+     * @param {string} options.mediaState Media (image/video) state name.
      * @param {string} options.visible Is cursor visible by default.
      * @param {object} options.stateDetection State detection rules.
      * @param {number} options.speed Cursor movement speed.
      * @param {string} options.ease Timing function of cursor movement.
-     * @param {boolean} options.overwrite Overwrite or remain cursor position when `mousemove` event happened.
-     * @param {number} options.skewing Default "skewing" factor.
-     * @param {number} options.skewingText Skew effect factor in a text state.
-     * @param {number} options.skewingIcon Skew effect factor in a icon state.
-     * @param {number} options.skewingMedia Skew effect factor in a media (image/video) state.
-     * @param {number} options.skewingDelta Skew effect base delta.
+     * @param {boolean} options.overwrite Overwrite or remain cursor position when `mousemove` event happens.
+     * @param {number} options.skewing Default skewing factor.
+     * @param {number} options.skewingText Skewing effect factor in a text state.
+     * @param {number} options.skewingIcon Skewing effect factor in a icon state.
+     * @param {number} options.skewingMedia Skewing effect factor in a media (image/video) state.
+     * @param {number} options.skewingDelta Skewing effect base delta.
      * @param {number} options.skewingDeltaMax Skew effect max delta.
      * @param {number} options.stickDelta Stick effect delta.
      * @param {number} options.showTimeout Delay before show.
      * @param {boolean} options.hideOnLeave Hide the cursor when mouse leave container.
-     * @param {number} options.hideTimeout Hiding delay. Should be equal to the CSS hide animation time.
+     * @param {number} options.hideTimeout Delay before hiding. It should be equal to the CSS hide animation time.
      * @param {array} options.initialPos Array (X, Y) of initial cursor position.
      */
     constructor(options) {
@@ -161,7 +161,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Create and attach an events to container.
+     * Create and attach events.
      */
     bind() {
         this.event.mouseleave = () => this.hide();
@@ -242,7 +242,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Render cursor on new position.
+     * Render the cursor in a new position.
      *
      * @param {boolean} [force=false] Force render.
      */
@@ -301,7 +301,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Add state to cursor.
+     * Add state/states to the cursor.
      *
      * @param {string} state State name.
      */
@@ -311,7 +311,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Remove state from cursor.
+     * Remove state/states from cursor.
      *
      * @param {string} state State name.
      */
@@ -347,7 +347,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Stick cursor to element.
+     * Stick cursor to the element.
      *
      * @param {string|HTMLElement} element Element or selector.
      */
@@ -361,14 +361,14 @@ export default class MouseFollower {
     }
 
     /**
-     * Unstick cursor from element.
+     * Unstick cursor from the element.
      */
     removeStick() {
         this.stick = false;
     }
 
     /**
-     * Transform cursor to text mode with given string.
+     * Transform cursor to text mode with a given string.
      *
      * @param {string} text Text.
      */
@@ -387,7 +387,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Transform cursor to svg spritesheet icon mode.
+     * Transform cursor to svg icon mode.
      *
      * @param {string} name Icon identifier.
      * @param {string} [style=""] Additional SVG styles.
@@ -408,7 +408,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Transform cursor to media mode with given element.
+     * Transform cursor to media mode with a given element.
      *
      * @param {HTMLElement} element Element.
      */
@@ -479,7 +479,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Get cursor options from data attribute of given element.
+     * Get cursor options from data attribute of a given element.
      *
      * @param {HTMLElement} element Element.
      * @return {object} Options.
