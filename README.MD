@@ -5,6 +5,7 @@
 <img src="https://img.shields.io/github/size/Cuberto/mouse-follower/dist/mouse-follower.js?label=size" alt="Bundle file size">
 <img src="http://img.badgesize.io/Cuberto/mouse-follower/dev/dist/mouse-follower.js?label=gzip%20size&compression=gzip" alt="Bundle file size (gzip)">
 <a href="https://npmcharts.com/compare/mouse-follower?minimal=true"><img src="https://img.shields.io/npm/dm/mouse-follower" alt="NPM Downloads"></a>
+<img src="https://img.shields.io/github/workflow/status/Cuberto/mouse-follower/Build" alt="GitHub Workflow Status">
 
 A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.
 
