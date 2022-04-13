@@ -1,6 +1,6 @@
 {
 	"name": "mouse-follower",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.",
 	"license": "MIT",
 	"main": "dist/mouse-follower.js",
