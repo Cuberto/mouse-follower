@@ -315,13 +315,14 @@ This method allows you to attach the cursor to an element with a magnet effect. 
 
 ```js
 const cursor = new MouseFollower();
+const box = document.querySelector('.my-fixed-box');
 const el = document.querySelector('.my-fixed-element');
 
-el.addEventListener('mouseenter', () => {
+box.addEventListener('mouseenter', () => {
     cursor.setStick(el);
 });
 
-el.addEventListener('mouseleave', () => {
+box.addEventListener('mouseleave', () => {
     cursor.removeStick();
 });
 ```
@@ -335,7 +336,7 @@ or via data attribute:
 You can also pass element selector to data attribute:
 
 ```html
-<div data-cursor-stick-stick="#stick-me">Hover <div id="stick-me">me</div> to stick cursor!</div>
+<div data-cursor-stick="#stick-me">Hover <div id="stick-me">me</div> to stick cursor!</div>
 ```
 
 ### Skewing effect
