@@ -1,7 +1,7 @@
 /*!
  * Cuberto Mouse Follower
  *
- * @version 1.0.2
+ * @version 1.0.3
  * @author Cuberto | Artem Dordzhiev (Draft)
  */
 
