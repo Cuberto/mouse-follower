@@ -1,8 +1,9 @@
 /*!
  * Cuberto Mouse Follower
+ * https://cuberto.com/
  *
  * @version 1.0.3
- * @author Cuberto | Artem Dordzhiev (Draft)
+ * @author Cuberto, Artem Dordzhiev (Draft)
  */
 
 export default class MouseFollower {
