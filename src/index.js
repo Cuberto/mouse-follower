@@ -10,7 +10,7 @@ export default class MouseFollower {
     /**
      * Register GSAP animation library.
      *
-     * @param {GSAP} gsap GSAP library.
+     * @param {gsap} gsap GSAP library.
      */
     static registerGSAP(gsap) {
         MouseFollower.gsap = gsap;
@@ -53,7 +53,7 @@ export default class MouseFollower {
      * @param {array} options.initialPos Array (X, Y) of initial cursor position.
      */
     constructor(options) {
-        this.gsap = MouseFollower.gsap;
+        this.gsap = MouseFollower.gsap || window.gsap;
         this.options = Object.assign({}, {
             el: null,
             container: document.body,
