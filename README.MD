@@ -49,7 +49,7 @@ You can configure cursor follower via options:
 
 ```js
 const cursor = new MouseFollower({
-    container: ".mf-container",
+    container: '.mf-container',
     speed: 0.3
 });
 ```
@@ -60,26 +60,28 @@ The following options with defaults are available:
 const cursor = new MouseFollower({
     el: null,
     container: document.body,
-    className: "mf-cursor",
-    innerClassName: "mf-cursor-inner",
-    textClassName: "mf-cursor-text",
-    mediaClassName: "mf-cursor-media",
-    mediaBoxClassName: "mf-cursor-media-box",
-    iconSvgClassName: "mf-svgsprite",
-    iconSvgStatePrefix: "-",
-    iconSvgSrc: "",
-    dataAttr: "cursor",
-    hiddenState: "-hidden",
-    textState: "-text",
-    iconState: "-icon",
-    activeState: "-active",
-    mediaState: "-media",
+    className: 'mf-cursor',
+    innerClassName: 'mf-cursor-inner',
+    textClassName: 'mf-cursor-text',
+    mediaClassName: 'mf-cursor-media',
+    mediaBoxClassName: 'mf-cursor-media-box',
+    iconSvgClassName: 'mf-svgsprite',
+    iconSvgNamePrefix: '-',
+    iconSvgSrc: '',
+    dataAttr: 'cursor',
+    hiddenState: '-hidden',
+    textState: '-text',
+    iconState: '-icon',
+    activeState: '-active',
+    mediaState: '-media',
     stateDetection: {
-        "-pointer": "a,button",
-        "-hidden": "iframe"
+        '-pointer': 'a,button',
+        '-hidden': 'iframe'
     },
+    visible: true,
+    visibleOnState: false,
     speed: 0.55,
-    ease: "expo.out",
+    ease: 'expo.out',
     overwrite: true,
     skewing: 0,
     skewingText: 2,
@@ -89,11 +91,9 @@ const cursor = new MouseFollower({
     skewingDeltaMax: 0.15,
     stickDelta: 0.15,
     showTimeout: 20,
-    showOnEnter: true,
     hideOnLeave: true,
     hideTimeout: 300,
-    hideMediaTimeout: 300,
-    initialPos: [-window.innerWidth, -window.innerHeight],
+    hideMediaTimeout: 300
 });
 ```
 
@@ -115,7 +115,8 @@ const cursor = new MouseFollower({
 | `iconState` |  `string` | Icon class name state. |
 | `activeState` |  `string` | Active (mousedown) class name state. |
 | `mediaState` |  `string` | Media (image/video) class name state. |
-| `visible` | `number` | Show the cursor when mouse enter container. This also means that the cursor will be visible by default. |
+| `visible` | `boolean` | Is cursor visible by default. |
+| `visibleOnState` | `boolean` | Automatically show/hide cursor when state added. Can be useful when implementing a hidden cursor follower. |
 | `stateDetection` |  `object` &vert; `null` | Allow to set predefined states for different elements on page. Uses an event delegation. |
 | `speed` |  `number` | Cursor movement speed. |
 | `ease` |  `string` | Timing function of cursor movement. See [gsap easing](https://greensock.com/docs/v3/Eases). |
@@ -130,7 +131,7 @@ const cursor = new MouseFollower({
 | `showTimeout` | `number` | Delay before show. May be useful for the spawn animation to work properly. |
 | `hideOnLeave` | `boolean` | Hide the cursor when mouse leave container. |
 | `hideTimeout` | `number` | Hiding delay. Should be equal to the CSS hide animation time. |
-| `initialPos` | `array` | Array (X, Y) of initial cursor position. |
+| `initialPos` | `array` | Array (x, y) of initial cursor position. |
 
 ## Advanced usage
 
@@ -159,7 +160,8 @@ or via data attribute:
 
 ### Toggle cursor state
 
-A state is essentially a class that applies to the root element of the cursor. You can change the appearance of the cursor using CSS (see `cursor.scss`).
+A state is essentially a class that applies to the root element of the cursor. You can change the appearance of the
+cursor using CSS (see `cursor.scss`).
 
 To set/unset state use methods:
 
@@ -189,9 +191,9 @@ You can customize the list of states for all elements on the page:
 ```js
 const cursor = new MouseFollower({
     stateDetection: {
-        "-pointer": "a,button",
-        "-opaque": ".my-image",
-        "-hidden": ".my-input"
+        '-pointer': 'a,button',
+        '-opaque': '.my-image',
+        '-hidden': '.my-input'
     }
 });
 ```
@@ -202,7 +204,9 @@ const cursor = new MouseFollower({
 <div class="mf-input">On this element cursor will be hidden</div>
 ```
 
-Note: State detection feature uses an event delegation. Do not create large amount rules and complex selectors to avoid performance problems. It is recommended to disable this in projects with a large number of nested DOM elements. This also applies to binding via data attribute.
+Note: State detection feature uses an event delegation. Do not create large amount rules and complex selectors to avoid
+performance problems. It is recommended to disable this in projects with a large number of nested DOM elements. This
+also applies to binding via data attribute.
 
 To fully disable event delegation:
 
@@ -238,13 +242,14 @@ or via data attribute:
 
 ### Icon mode
 
-If you use SVG spritesheet in your project and want to display them in the cursor, then you can use this method. In this case, you need to specify the path to the SVG sprite in the options and set class names.
+If you use SVG spritesheet in your project and want to display them in the cursor, then you can use this method. In this
+case, you need to specify the path to the SVG sprite in the options and set class names.
 
 ```js
 const cursor = new MouseFollower({
-    iconSvgSrc: "/assets/img/sprites/svgsprites.svg",
-    iconSvgClassName: "my-spritesheet",
-    iconSvgNamePrefix: "-",
+    iconSvgSrc: '/assets/img/sprites/svgsprites.svg',
+    iconSvgClassName: 'my-spritesheet',
+    iconSvgNamePrefix: '-',
 });
 const el = document.querySelector('.my-element');
 
@@ -311,7 +316,8 @@ or via data attribute:
 
 ### Sticky effect
 
-This method allows you to attach the cursor to an element with a magnet effect. This only works correctly with fixed elements on the page.
+This method allows you to attach the cursor to an element with a magnet effect. This only works correctly with fixed
+elements on the page.
 
 ```js
 const cursor = new MouseFollower();

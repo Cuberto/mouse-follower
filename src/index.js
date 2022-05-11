@@ -24,6 +24,7 @@ export default class MouseFollower {
      * @param {HTMLElement|null} options.container Cursor container.
      * @param {string} options.className Cursor root element class name.
      * @param {string} options.innerClassName Inner element class name.
+     * @param {string} options.textClassName Text element class name.
      * @param {string} options.mediaClassName Media element class name.
      * @param {string} options.mediaBoxClassName Media inner element class name.
      * @param {string} options.iconSvgClassName SVG sprite class name.
@@ -35,8 +36,9 @@ export default class MouseFollower {
      * @param {string} options.iconState Icon state name.
      * @param {string} options.activeState Active (mousedown) state name.
      * @param {string} options.mediaState Media (image/video) state name.
-     * @param {string} options.visible Is cursor visible by default.
      * @param {object} options.stateDetection State detection rules.
+     * @param {boolean} options.visible Is cursor visible by default.
+     * @param {boolean} options.visibleOnState Automatically show/hide cursor when state added.
      * @param {number} options.speed Cursor movement speed.
      * @param {string} options.ease Timing function of cursor movement.
      * @param {boolean} options.overwrite Overwrite or remain cursor position when `mousemove` event happens.
@@ -50,7 +52,7 @@ export default class MouseFollower {
      * @param {number} options.showTimeout Delay before show.
      * @param {boolean} options.hideOnLeave Hide the cursor when mouse leave container.
      * @param {number} options.hideTimeout Delay before hiding. It should be equal to the CSS hide animation time.
-     * @param {array} options.initialPos Array (X, Y) of initial cursor position.
+     * @param {array} options.initialPos Array (x, y) of initial cursor position.
      */
     constructor(options) {
         this.gsap = MouseFollower.gsap || window.gsap;
@@ -73,9 +75,9 @@ export default class MouseFollower {
             mediaState: '-media',
             stateDetection: {
                 '-pointer': 'a,button',
-                '-hidden': 'iframe',
             },
             visible: true,
+            visibleOnState: false,
             speed: 0.55,
             ease: 'expo.out',
             overwrite: true,
@@ -92,6 +94,8 @@ export default class MouseFollower {
             hideMediaTimeout: 300,
             initialPos: [-window.innerWidth, -window.innerHeight],
         }, options);
+
+        if (this.options.visible && !options.stateDetection) this.options.stateDetection['-hidden'] = 'iframe';
 
         this.el = typeof (this.options.el) === 'string' ?
             document.querySelector(this.options.el) : this.options.el;
@@ -295,10 +299,10 @@ export default class MouseFollower {
     /**
      * Toggle cursor.
      *
-     * @param {boolean} [force=false] Force state.
+     * @param {boolean} [force] Force state.
      */
-    toggle(force = false) {
-        if (!this.visible || force) {
+    toggle(force) {
+        if (force === true || force !== false && !this.visible) {
             this.show();
         } else {
             this.hide();
@@ -314,6 +318,7 @@ export default class MouseFollower {
         this.trigger('addState', state);
         if (state === this.options.hiddenState) return this.hide();
         this.el.classList.add(...state.split(' '));
+        if (this.options.visibleOnState) this.show();
     }
 
     /**
@@ -325,16 +330,21 @@ export default class MouseFollower {
         this.trigger('removeState', state);
         if (state === this.options.hiddenState) return this.show();
         this.el.classList.remove(...state.split(' '));
+        if (this.options.visibleOnState && this.el.className === this.options.className) this.hide();
     }
 
     /**
      * Toggle cursor state.
      *
      * @param {string} state State name.
-     * @param {boolean} force Force state.
+     * @param {boolean} [force] Force state.
      */
     toggleState(state, force) {
-        this.el.classList.toggle(`${state}`, force);
+        if (force === true || force !== false && !this.el.classList.contains(state)) {
+            this.addState(state);
+        } else {
+            this.removeState(state);
+        }
     }
 
     /**
