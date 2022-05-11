@@ -393,6 +393,34 @@ const cursor = new MouseFollower();
 cursor.destroy();
 ```
 
+## Events
+
+Mouse Follower comes with a useful events you can listen. Events can be assigned in this way:
+
+```js
+const cursor = new MouseFollower();
+
+cursor.on('show', () => {
+    console.log('cursor appear');
+});
+```
+
+You can also delete an event that you no longer want to listen in these ways:
+
+```js
+cursor.off('show');
+cursor.off('show', myHandler);
+```
+
+| Name | Arguments | Description |
+| :--- | :--- | :--- |
+| `show` | `(cursor)` | Event will be fired when the show state is entered. |
+| `hide` | `(cursor)` | Event will be fired when the hidden state is entered. |
+| `addState` | `(cursor, state)` | Event will be fired when the state is added. |
+| `removeState` | `(cursor, state)` | Event will be fired when the state is removed. |
+| `render` | `(cursor)` | Event will be fired on each render tick. |
+| `destroy` | `(cursor)` | Event will be fired when the instance is destroyed. |
+
 ## Examples of use
 
 - [Cuberto](https://cuberto.com/): Leading digital agency.
