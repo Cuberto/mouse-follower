@@ -88,7 +88,7 @@ export default class MouseFollower {
             skewingDelta: 0.001,
             skewingDeltaMax: 0.15,
             stickDelta: 0.15,
-            showTimeout: 20,
+            showTimeout: 0,
             hideOnLeave: true,
             hideTimeout: 300,
             hideMediaTimeout: 300,
@@ -282,8 +282,11 @@ export default class MouseFollower {
     show() {
         this.trigger('show');
         clearInterval(this.visibleInt);
-        this.el.classList.remove(this.options.hiddenState);
-        this.visibleInt = setTimeout(() => this.visible = true, this.options.showTimeout);
+        this.visibleInt = setTimeout(() => {
+            this.el.classList.remove(this.options.hiddenState);
+            this.visible = true;
+            this.render(true);
+        }, this.options.showTimeout);
     }
 
     /**
