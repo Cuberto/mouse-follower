@@ -2,7 +2,7 @@
  * Cuberto Mouse Follower
  * https://cuberto.com/
  *
- * @version 1.0.5
+ * @version 1.0.6
  * @author Cuberto, Artem Dordzhiev (Draft)
  */
 
