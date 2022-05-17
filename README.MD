@@ -113,7 +113,7 @@ const cursor = new MouseFollower({
 | `hiddenState` |  `string` | Hidden class name state. |
 | `textState` |  `string` | Text class name state. |
 | `iconState` |  `string` | Icon class name state. |
-| `activeState` |  `string` | Active (mousedown) class name state. |
+| `activeState` |  `string` &vert; `null` | Active (mousedown) class name state. Set `false` to disable. |
 | `mediaState` |  `string` | Media (image/video) class name state. |
 | `visible` | `boolean` | Is cursor visible by default. |
 | `visibleOnState` | `boolean` | Automatically show/hide cursor when state added. Can be useful when implementing a hidden cursor follower. |

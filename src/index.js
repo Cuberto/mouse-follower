@@ -34,7 +34,7 @@ export default class MouseFollower {
      * @param {string} options.hiddenState Hidden state name.
      * @param {string} options.textState Text state name.
      * @param {string} options.iconState Icon state name.
-     * @param {string} options.activeState Active (mousedown) state name.
+     * @param {string|null} options.activeState Active (mousedown) state name. Set false to disable.
      * @param {string} options.mediaState Media (image/video) state name.
      * @param {object} options.stateDetection State detection rules.
      * @param {boolean} options.visible Is cursor visible by default.
@@ -232,8 +232,10 @@ export default class MouseFollower {
         if (this.options.visible) {
             this.container.addEventListener('mouseenter', this.event.mouseenter, {passive: true});
         }
-        this.container.addEventListener('mousedown', this.event.mousedown, {passive: true});
-        this.container.addEventListener('mouseup', this.event.mouseup, {passive: true});
+        if (this.options.activeState) {
+            this.container.addEventListener('mousedown', this.event.mousedown, {passive: true});
+            this.container.addEventListener('mouseup', this.event.mouseup, {passive: true});
+        }
         this.container.addEventListener('mousemove', this.event.mousemove, {passive: true});
         if (this.options.visible) {
             this.container.addEventListener('mousemove', this.event.mousemoveOnce, {
