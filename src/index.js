@@ -95,7 +95,7 @@ export default class MouseFollower {
             initialPos: [-window.innerWidth, -window.innerHeight],
         }, options);
 
-        if (this.options.visible && !options.stateDetection) this.options.stateDetection['-hidden'] = 'iframe';
+        if (this.options.visible && options.stateDetection == null) this.options.stateDetection['-hidden'] = 'iframe';
 
         this.el = typeof (this.options.el) === 'string' ?
             document.querySelector(this.options.el) : this.options.el;
