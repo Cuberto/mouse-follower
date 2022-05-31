@@ -36,7 +36,7 @@ export default class MouseFollower {
      * @param {string} options.iconState Icon state name.
      * @param {string|null} options.activeState Active (mousedown) state name. Set false to disable.
      * @param {string} options.mediaState Media (image/video) state name.
-     * @param {object} options.stateDetection State detection rules.
+     * @param {object} options.stateDetelction State detection rules.
      * @param {boolean} options.visible Is cursor visible by default.
      * @param {boolean} options.visibleOnState Automatically show/hide cursor when state added.
      * @param {number} options.speed Cursor movement speed.

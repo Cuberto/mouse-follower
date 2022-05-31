@@ -18,6 +18,6 @@ jobs:
       - name: Build
         run: |
           npm install
-          npx webpack --mode production
+          npm run build
       - name: Run ESLint
         run: npm run lint
