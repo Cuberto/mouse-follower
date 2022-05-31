@@ -54,7 +54,7 @@ export default class MouseFollower {
      * @param {number} options.hideTimeout Delay before hiding. It should be equal to the CSS hide animation time.
      * @param {array} options.initialPos Array (x, y) of initial cursor position.
      */
-    constructor(options) {
+    constructor(options = {}) {
         this.gsap = MouseFollower.gsap || window.gsap;
         this.options = Object.assign({}, {
             el: null,
