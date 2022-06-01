@@ -2,8 +2,8 @@
 
 <a href="https://www.npmjs.com/package/mouse-follower"><img src="https://img.shields.io/npm/v/mouse-follower" alt="NPM Version"></a>
 <a href="LICENCE"><img src="https://img.shields.io/github/license/Cuberto/mouse-follower" alt="Licence"></a>
-<img src="https://img.shields.io/github/size/Cuberto/mouse-follower/dist/mouse-follower.js?label=size" alt="Bundle file size">
-<img src="http://img.badgesize.io/Cuberto/mouse-follower/dev/dist/mouse-follower.js?label=gzip%20size&compression=gzip" alt="Bundle file size (gzip)">
+<img src="https://img.shields.io/bundlephobia/min/mouse-follower?color=orange" alt="Bundle file size">
+<img src="https://img.shields.io/bundlephobia/minzip/mouse-follower?color=orange&label=gzip%20size" alt="Bundle file size (gzip)">
 <a href="https://npmcharts.com/compare/mouse-follower?minimal=true"><img src="https://img.shields.io/npm/dm/mouse-follower" alt="NPM Downloads"></a>
 <img src="https://img.shields.io/github/workflow/status/Cuberto/mouse-follower/Build" alt="GitHub Workflow Status">
 
