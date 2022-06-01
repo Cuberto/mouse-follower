@@ -1,6 +1,6 @@
 {
 	"name": "mouse-follower",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.",
 	"license": "MIT",
 	"source": "./src/index.js",
@@ -9,8 +9,8 @@
 	"unpkg": "./dist/index.umd.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
-		"dev": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true --watch",
-		"build": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true && microbundle -f umd -o dist/mouse-follower.min.js --no-pkg-main --generateTypes false && sass src/scss/index.scss dist/mouse-follower.min.css -s compressed",
+		"dev": "microbundle -f esm,cjs,umd --name MouseFollower --compress false --sourcemap false --generateTypes true --watch",
+		"build": "microbundle -f esm,cjs,umd --name MouseFollower --compress false --sourcemap false --generateTypes true && microbundle -f umd --name MouseFollower -o dist/mouse-follower.min.js --no-pkg-main --generateTypes false && sass src/scss/index.scss dist/mouse-follower.min.css -s compressed",
 		"lint": "eslint src/* --no-error-on-unmatched-pattern"
 	},
 	"repository": {
