@@ -1,10 +1,10 @@
 # Cuberto Mouse Follower
 
-<a href="https://www.npmjs.com/package/mouse-follower"><img src="https://img.shields.io/npm/v/mouse-follower" alt="NPM Version"></a>
-<a href="LICENCE"><img src="https://img.shields.io/github/license/Cuberto/mouse-follower" alt="Licence"></a>
-<img src="https://img.shields.io/bundlephobia/min/mouse-follower?color=orange" alt="Bundle file size">
-<img src="https://img.shields.io/bundlephobia/minzip/mouse-follower?color=orange&label=gzip%20size" alt="Bundle file size (gzip)">
-<a href="https://npmcharts.com/compare/mouse-follower?minimal=true"><img src="https://img.shields.io/npm/dm/mouse-follower" alt="NPM Downloads"></a>
+<a href="https://www.npmjs.com/package/mouse-follower"><img src="https://img.shields.io/npm/v/mouse-follower?color=red" alt="NPM Version"></a>
+<a href="LICENCE"><img src="https://img.shields.io/github/license/Cuberto/mouse-follower?color=orange" alt="Licence"></a>
+<img src="https://img.shields.io/bundlephobia/min/mouse-follower?color=green" alt="Bundle file size">
+<img src="https://img.shields.io/bundlephobia/minzip/mouse-follower?color=yellow&label=gzip%20size" alt="Bundle file size (gzip)">
+<a href="https://npmcharts.com/compare/mouse-follower?minimal=true"><img src="https://img.shields.io/npm/dm/mouse-follower?color=blue" alt="NPM Downloads"></a>
 <img src="https://img.shields.io/github/workflow/status/Cuberto/mouse-follower/Build" alt="GitHub Workflow Status">
 
 A powerful javascript library to create amazing and smooth effects for the mouse cursor on your website.
@@ -15,24 +15,18 @@ A powerful javascript library to create amazing and smooth effects for the mouse
 
 GSAP v3 (https://greensock.com/gsap/)
 
-## Installation
+## Quick start
+
+### Install from NPM
+
+Mouse Follower requires GSAP library to work.
 
 ```
 npm install gsap --save
 npm install mouse-follower --save
 ```
 
-## Quick start
-
-Import cursor styles from `/src/scss/index.scss` into your main SCSS file:
-
-```scss
-@import "cursor";
-```
-
-Mouse Follower requires GSAP library to work.
-
-Import GSAP, import Mouse Follower and initialize it in JS:
+Import GSAP and Mouse Follower and initialize it:
 
 ```js
 import MouseFollower from "mouse-follower";
@@ -43,9 +37,37 @@ MouseFollower.registerGSAP(gsap);
 const cursor = new MouseFollower();
 ```
 
-### Options
+Don't forget to import the cursor styles from `/src/scss/index.scss` into your main scss file:
 
-You can configure cursor follower via options:
+```scss
+@import "cursor";
+```
+
+### Use from CDN
+
+If you don't want to include Mouse Follower files in your project, you can use it from CDN.
+
+The following files are available:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.css">
+
+<script src="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.js"></script>
+```
+
+Mouse Follower requires GSAP library to work. You need to import it before the Mouse Follower if you didn't have it before:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+<script src="https://unpkg.com/mouse-follower@1/dist/mouse-follower.min.js"></script>
+<script>
+    var cursor = new MouseFollower();
+</script>
+```
+
+## Options
+
+You can configure Mouse Follower via options:
 
 ```js
 const cursor = new MouseFollower({
