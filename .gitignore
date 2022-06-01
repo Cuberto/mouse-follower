@@ -24,5 +24,7 @@ bower_components
 .env
 
 # Project
+/dist/
+/build/
 /tmp/
 package-lock.json
