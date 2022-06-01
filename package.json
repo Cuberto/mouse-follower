@@ -6,7 +6,7 @@
 	"source": "./src/index.js",
 	"main": "./dist/index.js",
 	"module": "./dist/index.module.js",
-	"unpkg": "./dist/mouse-follower.min.js",
+	"unpkg": "./dist/index.umd.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"dev": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true --watch",
