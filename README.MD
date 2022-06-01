@@ -200,8 +200,8 @@ const cursor = new MouseFollower({
 
 ```html
 <a>On this element cursor will be in pointer state</a>
-<div class="mf-image">On this element cursor will be in opaque state</div>
-<div class="mf-input">On this element cursor will be hidden</div>
+<div class="my-image">On this element cursor will be in opaque state</div>
+<div class="my-input">On this element cursor will be hidden</div>
 ```
 
 Note: State detection feature uses an event delegation. Do not create large amount rules and complex selectors to avoid
