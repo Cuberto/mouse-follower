@@ -10,7 +10,7 @@
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"dev": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true --watch",
-		"build": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true && microbundle -f umd -o dist/mouse-follower.min.js --no-pkg-main --generateTypes false",
+		"build": "microbundle -f esm,cjs,umd --compress false --sourcemap false --generateTypes true && microbundle -f umd -o dist/mouse-follower.min.js --no-pkg-main --generateTypes false && sass src/scss/index.scss dist/mouse-follower.min.css -s compressed",
 		"lint": "eslint src/* --no-error-on-unmatched-pattern"
 	},
 	"repository": {
@@ -42,6 +42,7 @@
 	],
 	"devDependencies": {
 		"eslint": "^8.12.0",
+		"sass": "^1.52.1",
 		"microbundle": "^0.15.0"
 	}
 }
