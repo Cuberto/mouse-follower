@@ -28,6 +28,7 @@
 		"follower",
 		"animation",
 		"ui",
+		"library",
 		"microlibrary",
 		"magic",
 		"custom",
@@ -36,7 +37,8 @@
 		"image",
 		"text",
 		"icon",
-		"effects"
+		"effects",
+		"gsap"
 	],
 	"devDependencies": {
 		"eslint": "^8.12.0",
