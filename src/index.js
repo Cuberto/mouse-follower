@@ -378,7 +378,7 @@ export default class MouseFollower {
         const rect = el.getBoundingClientRect();
         this.stick = {
             y: rect.top + (rect.height / 2),
-            x: rect.left + (rect.height / 2),
+            x: rect.left + (rect.width / 2),
         };
     }
 
