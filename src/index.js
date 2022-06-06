@@ -8,6 +8,43 @@
 
 export default class MouseFollower {
     /**
+     * @typedef {Object} MouseFollowerOptions
+     * @property {string|HTMLElement|null} [el] Existed cursor element.
+     * @property {string|HTMLElement|null} [container] Cursor container.
+     * @property {string} [className] Cursor root element class name.
+     * @property {string} [innerClassName] Inner element class name.
+     * @property {string} [textClassName] Text element class name.
+     * @property {string} [mediaClassName] Media element class name.
+     * @property {string} [mediaBoxClassName] Media inner element class name.
+     * @property {string} [iconSvgClassName] SVG sprite class name.
+     * @property {string} [iconSvgNamePrefix] SVG sprite icon class name prefix.
+     * @property {string} [iconSvgSrc] SVG sprite source.
+     * @property {string|null} [dataAttr] Name of data attribute for changing cursor state directly in HTML.
+     * @property {string} [hiddenState] Hidden state name.
+     * @property {string} [textState] Text state name.
+     * @property {string} [iconState] Icon state name.
+     * @property {string|null} [activeState] Active (mousedown) state name. Set false to disable.
+     * @property {string} [mediaState] Media (image/video) state name.
+     * @property {Object} [stateDetection] State detection rules.
+     * @property {boolean} [visible] Is cursor visible by default.
+     * @property {boolean} [visibleOnState] Automatically show/hide cursor when state added.
+     * @property {number} [speed] Cursor movement speed.
+     * @property {string} [ease] Timing function of cursor movement.
+     * @property {boolean} [overwrite] Overwrite or remain cursor position when `mousemove` event happens.
+     * @property {number} [skewing] Default skewing factor.
+     * @property {number} [skewingText] Skewing effect factor in a text state.
+     * @property {number} [skewingIcon] Skewing effect factor in a icon state.
+     * @property {number} [skewingMedia] Skewing effect factor in a media (image/video) state.
+     * @property {number} [skewingDelta] Skewing effect base delta.
+     * @property {number} [skewingDeltaMax] Skew effect max delta.
+     * @property {number} [stickDelta] Stick effect delta.
+     * @property {number} [showTimeout] Delay before show.
+     * @property {boolean} [hideOnLeave] Hide the cursor when mouse leave container.
+     * @property {number} [hideTimeout] Delay before hiding. It should be equal to the CSS hide animation time.
+     * @property {number[]} [initialPos] Array (x, y) of initial cursor position.
+     */
+
+    /**
      * Register GSAP animation library.
      *
      * @param {gsap} gsap GSAP library.
@@ -19,43 +56,10 @@ export default class MouseFollower {
     /**
      * Create cursor instance.
      *
-     * @param {object} [options] Cursor options.
-     * @param {HTMLElement|null} options.el Existed cursor element.
-     * @param {HTMLElement|null} options.container Cursor container.
-     * @param {string} options.className Cursor root element class name.
-     * @param {string} options.innerClassName Inner element class name.
-     * @param {string} options.textClassName Text element class name.
-     * @param {string} options.mediaClassName Media element class name.
-     * @param {string} options.mediaBoxClassName Media inner element class name.
-     * @param {string} options.iconSvgClassName SVG sprite class name.
-     * @param {string} options.iconSvgNamePrefix SVG sprite icon class name prefix.
-     * @param {string} options.iconSvgSrc SVG sprite source.
-     * @param {string|null} options.dataAttr Name of data attribute for changing cursor state directly in HTML.
-     * @param {string} options.hiddenState Hidden state name.
-     * @param {string} options.textState Text state name.
-     * @param {string} options.iconState Icon state name.
-     * @param {string|null} options.activeState Active (mousedown) state name. Set false to disable.
-     * @param {string} options.mediaState Media (image/video) state name.
-     * @param {object} options.stateDetection State detection rules.
-     * @param {boolean} options.visible Is cursor visible by default.
-     * @param {boolean} options.visibleOnState Automatically show/hide cursor when state added.
-     * @param {number} options.speed Cursor movement speed.
-     * @param {string} options.ease Timing function of cursor movement.
-     * @param {boolean} options.overwrite Overwrite or remain cursor position when `mousemove` event happens.
-     * @param {number} options.skewing Default skewing factor.
-     * @param {number} options.skewingText Skewing effect factor in a text state.
-     * @param {number} options.skewingIcon Skewing effect factor in a icon state.
-     * @param {number} options.skewingMedia Skewing effect factor in a media (image/video) state.
-     * @param {number} options.skewingDelta Skewing effect base delta.
-     * @param {number} options.skewingDeltaMax Skew effect max delta.
-     * @param {number} options.stickDelta Stick effect delta.
-     * @param {number} options.showTimeout Delay before show.
-     * @param {boolean} options.hideOnLeave Hide the cursor when mouse leave container.
-     * @param {number} options.hideTimeout Delay before hiding. It should be equal to the CSS hide animation time.
-     * @param {array} options.initialPos Array (x, y) of initial cursor position.
+     * @param {MouseFollowerOptions} [options] Cursor options.
      */
     constructor(options = {}) {
-        this.gsap = MouseFollower.gsap || window.gsap;
+        /** @type {MouseFollowerOptions} **/
         this.options = Object.assign({}, {
             el: null,
             container: document.body,
@@ -97,6 +101,7 @@ export default class MouseFollower {
 
         if (this.options.visible && options.stateDetection == null) this.options.stateDetection['-hidden'] = 'iframe';
 
+        this.gsap = MouseFollower.gsap || window.gsap;
         this.el = typeof (this.options.el) === 'string' ?
             document.querySelector(this.options.el) : this.options.el;
         this.container = typeof (this.options.container) === 'string' ?
@@ -540,7 +545,7 @@ export default class MouseFollower {
      * Get cursor options from data attribute of a given element.
      *
      * @param {HTMLElement} element Element.
-     * @return {object} Options.
+     * @return {Object} Options.
      */
     getFromDataset(element) {
         const dataset = element.dataset;
