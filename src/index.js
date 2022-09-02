@@ -241,9 +241,9 @@ export default class MouseFollower {
             this.container.addEventListener('mousedown', this.event.mousedown, {passive: true});
             this.container.addEventListener('mouseup', this.event.mouseup, {passive: true});
         }
-        this.container.addEventListener('mousemove', this.event.mousemove, {passive: true});
+        this.container.addEventListener('pointermove', this.event.mousemove, {passive: true});
         if (this.options.visible) {
-            this.container.addEventListener('mousemove', this.event.mousemoveOnce, {
+            this.container.addEventListener('pointermove', this.event.mousemoveOnce, {
                 passive: true,
                 once: true,
             });
@@ -570,8 +570,8 @@ export default class MouseFollower {
         this.container.removeEventListener('mouseenter', this.event.mouseenter);
         this.container.removeEventListener('mousedown', this.event.mousedown);
         this.container.removeEventListener('mouseup', this.event.mouseup);
-        this.container.removeEventListener('mousemove', this.event.mousemove);
-        this.container.removeEventListener('mousemove', this.event.mousemoveOnce);
+        this.container.removeEventListener('pointermove', this.event.mousemove);
+        this.container.removeEventListener('pointermove', this.event.mousemoveOnce);
         this.container.removeEventListener('mouseover', this.event.mouseover);
         this.container.removeEventListener('mouseout', this.event.mouseout);
         if (this.el) {
