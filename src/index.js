@@ -1,12 +1,4 @@
-/*!
- * Cuberto Mouse Follower
- * https://cuberto.com/
- *
- * @version 1.1.2
- * @author Cuberto, Artem Dordzhiev (Draft)
- */
-
-export default class MouseFollower {
+class MouseFollower {
     /**
      * @typedef {Object} MouseFollowerOptions
      * @property {string|HTMLElement|null} [el] Existed cursor element.

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <style>
+      body {
+        background-color: lightblue;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      h1 {
+        color: navy;
+      }
+      p {
+        font-family: verdana;
+        font-size: 20px;
+      }
+    </style>
+    <link href="css/index.css" type="stylesheet" />
+  </head>
+  <body>
+    <div class="cursor"></div>
+    <div class="content">
+      <h1>Welcome to My Page</h1>
+      <p>This is a paragraph about me. I am a learner and I love to explore new things.</p>
+    </div>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="gsap.min.js"></script>
+    <script>
+
+        const cursor = new MouseFollower({
+            el: null,
+            container: document.body,
+            className: 'cursor',
+            innerClassName: 'mf-cursor-inner',
+            textClassName: 'mf-cursor-text',
+            mediaClassName: 'mf-cursor-media',
+            mediaBoxClassName: 'mf-cursor-media-box',
+            iconSvgClassName: 'mf-svgsprite',
+            iconSvgNamePrefix: '-',
+            iconSvgSrc: '',
+            dataAttr: 'cursor',
+            hiddenState: '-hidden',
+            textState: '-text',
+            iconState: '-icon',
+            activeState: '-active',
+            mediaState: '-media',
+            stateDetection: {
+                '-pointer': 'a,button',
+                '-hidden': 'iframe'
+            },
+            visible: true,
+            visibleOnState: false,
+            speed: 0.55,
+            ease: 'expo.out',
+            overwrite: true,
+            skewing: 0,
+            skewingText: 2,
+            skewingIcon: 2,
+            skewingMedia: 2,
+            skewingDelta: 0.001,
+            skewingDeltaMax: 0.15,
+            stickDelta: 0.15,
+            showTimeout: 20,
+            hideOnLeave: true,
+            hideTimeout: 300,
+            hideMediaTimeout: 300
+        });
+
+        cursor.show()
+    </script>
+
+    </script>
+  </body>
+</html>
+
