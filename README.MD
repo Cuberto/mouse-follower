@@ -453,7 +453,6 @@ cursor.off('show', myHandler);
 
 - [Cuberto](https://cuberto.com/): Leading digital agency.
 - [Potion](https://www.sendpotion.com/): Video email for top sales professionals.
-- [NANA](https://nana-asia.com/): Digital Magazine and Media Company in Asia.
 - [Wickret](https://wickret.cuberto.com/): 100% digital bank designed for you.
 - [Papumba](https://www.papumba.com/): Educational platform for kids.
 - [Safe Security](https://www.safe.security/): Cyber Risk Quantification For Enterprises.
