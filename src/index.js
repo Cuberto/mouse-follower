@@ -123,7 +123,7 @@ export default class MouseFollower {
      * Initialize the cursor.
      */
     init() {
-        if (!this.el) this.create();
+        this.create();
         this.createSetter();
         this.bind();
         this.render(true);
@@ -132,30 +132,31 @@ export default class MouseFollower {
     }
 
     /**
-     * Create the cursor DOM element and append it to the container.
+     * Create cursor DOM elements or get existing ones.
      */
     create() {
-        this.el = document.createElement('div');
-        this.el.className = this.options.className;
+        this.el = this.el || this.createPart(this.options.className, this.container, false);
+        this.inner = this.createPart(this.options.innerClassName, this.el);
+        this.media = this.createPart(this.options.mediaClassName, this.inner);
+        this.mediaBox = this.createPart(this.options.mediaBoxClassName, this.media);
+        this.text = this.createPart(this.options.textClassName, this.inner);
+
         this.el.classList.add(this.options.hiddenState);
+    }
 
-        this.inner = document.createElement('div');
-        this.inner.className = this.options.innerClassName;
-
-        this.text = document.createElement('div');
-        this.text.className = this.options.textClassName;
-
-        this.media = document.createElement('div');
-        this.media.className = this.options.mediaClassName;
-
-        this.mediaBox = document.createElement('div');
-        this.mediaBox.className = this.options.mediaBoxClassName;
-
-        this.media.appendChild(this.mediaBox);
-        this.inner.appendChild(this.media);
-        this.inner.appendChild(this.text);
-        this.el.appendChild(this.inner);
-        this.container.appendChild(this.el);
+    /**
+     * Create a cursor DOM part or get an existing one.
+     *
+     * @param {string} className Element class name.
+     * @param {HTMLElement} container Parent element.
+     * @param {boolean} [reuse=true] Use existing element if found.
+     * @return {HTMLElement} Cursor DOM part.
+     */
+    createPart(className, container, reuse = true) {
+        const el = reuse && container.getElementsByClassName(className)[0] || document.createElement('div');
+        el.className = el.className || className;
+        if (!el.parentNode) container.appendChild(el);
+        return el;
     }
 
     /**
