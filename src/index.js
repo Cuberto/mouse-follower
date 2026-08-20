@@ -425,12 +425,19 @@ export default class MouseFollower {
     /**
      * Transform the cursor to SVG icon mode.
      *
-     * @param {string} name Icon identifier.
+     * @param {string|SVGElement} icon Icon identifier or SVG element.
      * @param {string} [style=""] Additional SVG styles.
      */
-    setIcon(name, style = '') {
-        this.text.innerHTML = `<svg class='${this.options.iconSvgClassName} ${this.options.iconSvgNamePrefix}${name}'`
-            + ` style='${style}'><use xlink:href='${this.options.iconSvgSrc}#${name}'></use></svg>`;
+    setIcon(icon, style = '') {
+        if (icon instanceof SVGElement) {
+            if (style) icon.setAttribute('style', style);
+            this.text.innerHTML = '';
+            this.text.appendChild(icon);
+        } else {
+            this.text.innerHTML = `<svg class='${this.options.iconSvgClassName} `
+                + `${this.options.iconSvgNamePrefix}${icon}' style='${style}'>`
+                + `<use xlink:href='${this.options.iconSvgSrc}#${icon}'></use></svg>`;
+        }
         this.addState(this.options.iconState);
         this.setSkewing(this.options.skewingIcon);
     }
