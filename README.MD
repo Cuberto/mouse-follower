@@ -87,6 +87,7 @@ const cursor = new MouseFollower({
     iconSvgClassName: 'mf-svgsprite',
     iconSvgNamePrefix: '-',
     iconSvgSrc: '',
+    iconImgClassName: 'mf-cursor-icon',
     dataAttr: 'cursor',
     hiddenState: '-hidden',
     textState: '-text',
@@ -129,6 +130,7 @@ const cursor = new MouseFollower({
 | `iconSvgClassName` |  `string` | SVG sprite class name. |
 | `iconSvgNamePrefix` |  `string` | SVG sprite class name prefix for icons. |
 | `iconSvgSrc` |  `string` | SVG sprite source. If you are not using SVG sprites, leave this blank. |
+| `iconImgClassName` |  `string` | SVG icon img class name. |
 | `dataAttr` |  `string` &vert; `null` | Name of the data attribute for changing cursor state directly in HTML markup. Uses event delegation. |
 | `hiddenState` |  `string` | Hidden class name state. |
 | `textState` |  `string` | Text class name state. |
@@ -286,6 +288,20 @@ or via a data attribute:
 
 ```html
 <div data-cursor-icon="arrow-left">Hover me!</div>
+```
+
+You can also use any SVG icon by URL:
+
+```js
+el.addEventListener('mouseenter', () => {
+    cursor.setIconImg('/img/arrow-left.svg');
+});
+```
+
+or via a data attribute:
+
+```html
+<div data-cursor-icon-img="/img/arrow-left.svg">Hover me!</div>
 ```
 
 ### Image mode
