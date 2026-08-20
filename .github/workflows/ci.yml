@@ -1,16 +1,16 @@
-name: Publish on NPM
+name: CI
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - dev
+  pull_request:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,13 +21,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
         run: npm install
 
+      - name: Run ESLint
+        run: npm run lint
+
       - name: Build
         run: npm run build
-
-      - name: Publish package
-        run: npm publish
