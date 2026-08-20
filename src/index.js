@@ -20,6 +20,7 @@ export default class MouseFollower {
      * @property {string} [iconSvgClassName] SVG sprite class name.
      * @property {string} [iconSvgNamePrefix] SVG sprite class name prefix for icons.
      * @property {string} [iconSvgSrc] SVG sprite source. If you are not using SVG sprites, leave this blank.
+     * @property {string} [iconImgClassName] SVG icon img class name.
      * @property {string|null} [dataAttr] Data attribute name for changing cursor state in HTML. Uses event delegation.
      * @property {string} [hiddenState] Hidden class name state.
      * @property {string} [textState] Text class name state.
@@ -73,6 +74,7 @@ export default class MouseFollower {
             iconSvgClassName: 'mf-svgsprite',
             iconSvgNamePrefix: '-',
             iconSvgSrc: '',
+            iconImgClassName: 'mf-cursor-icon',
             dataAttr: 'cursor',
             hiddenState: '-hidden',
             textState: '-text',
@@ -208,6 +210,7 @@ export default class MouseFollower {
                     if (params.state) this.addState(params.state);
                     if (params.text) this.setText(params.text);
                     if (params.icon) this.setIcon(params.icon);
+                    if (params.iconImg) this.setIconImg(params.iconImg);
                     if (params.img) this.setImg(params.img);
                     if (params.video) this.setVideo(params.video);
                     if (typeof (params.show) !== 'undefined') this.show();
@@ -228,6 +231,7 @@ export default class MouseFollower {
                     if (params.state) this.removeState(params.state);
                     if (params.text) this.removeText();
                     if (params.icon) this.removeIcon();
+                    if (params.iconImg) this.removeIcon();
                     if (params.img) this.removeImg();
                     if (params.video) this.removeVideo();
                     if (typeof (params.show) !== 'undefined') this.hide();
@@ -432,6 +436,18 @@ export default class MouseFollower {
     }
 
     /**
+     * Transform the cursor to image icon mode.
+     *
+     * @param {string} url Icon URL.
+     * @param {string} [style=""] Additional img styles.
+     */
+    setIconImg(url, style = '') {
+        this.text.innerHTML = `<img class='${this.options.iconImgClassName}' src='${url}' style='${style}' alt=''>`;
+        this.addState(this.options.iconState);
+        this.setSkewing(this.options.skewingIcon);
+    }
+
+    /**
      * Revert the cursor from icon mode.
      */
     removeIcon() {
@@ -559,6 +575,7 @@ export default class MouseFollower {
             show: dataset[this.options.dataAttr + 'Show'],
             text: dataset[this.options.dataAttr + 'Text'],
             icon: dataset[this.options.dataAttr + 'Icon'],
+            iconImg: dataset[this.options.dataAttr + 'IconImg'],
             img: dataset[this.options.dataAttr + 'Img'],
             video: dataset[this.options.dataAttr + 'Video'],
             stick: dataset[this.options.dataAttr + 'Stick'],
