@@ -9,44 +9,44 @@
 export default class MouseFollower {
     /**
      * @typedef {Object} MouseFollowerOptions
-     * @property {string|HTMLElement|null} [el] Existed cursor element.
-     * @property {string|HTMLElement|null} [container] Cursor container.
-     * @property {string|HTMLElement|null} [eventsTarget] Events target.
+     * @property {string|HTMLElement|null} [el] Existing cursor element, created automatically if not specified.
+     * @property {string|HTMLElement|null} [container] Cursor container. Body by default.
+     * @property {string|HTMLElement|null} [eventsTarget] Target for cursor events. Body by default.
      * @property {string} [className] Cursor root element class name.
      * @property {string} [innerClassName] Inner element class name.
      * @property {string} [textClassName] Text element class name.
      * @property {string} [mediaClassName] Media element class name.
      * @property {string} [mediaBoxClassName] Media inner element class name.
      * @property {string} [iconSvgClassName] SVG sprite class name.
-     * @property {string} [iconSvgNamePrefix] SVG sprite icon class name prefix.
-     * @property {string} [iconSvgSrc] SVG sprite source.
-     * @property {string|null} [dataAttr] Name of data attribute for changing cursor state directly in HTML.
-     * @property {string} [hiddenState] Hidden state name.
-     * @property {string} [textState] Text state name.
-     * @property {string} [iconState] Icon state name.
-     * @property {string|null} [activeState] Active (mousedown) state name. Set false to disable.
-     * @property {string} [mediaState] Media (image/video) state name.
-     * @property {Object} [stateDetection] State detection rules.
-     * @property {boolean} [visible] Is cursor visible by default.
-     * @property {boolean} [visibleOnState] Automatically show/hide cursor when state added.
+     * @property {string} [iconSvgNamePrefix] SVG sprite class name prefix for icons.
+     * @property {string} [iconSvgSrc] SVG sprite source. If you are not using SVG sprites, leave this blank.
+     * @property {string|null} [dataAttr] Data attribute name for changing cursor state in HTML. Uses event delegation.
+     * @property {string} [hiddenState] Hidden class name state.
+     * @property {string} [textState] Text class name state.
+     * @property {string} [iconState] Icon class name state.
+     * @property {string|null} [activeState] Active (mousedown) class name state. Set `false` to disable.
+     * @property {string} [mediaState] Media (image/video) class name state.
+     * @property {Object} [stateDetection] Predefined states for different page elements. Uses event delegation.
+     * @property {boolean} [visible] Whether the cursor is visible by default.
+     * @property {boolean} [visibleOnState] Automatically show/hide cursor when a state is added.
      * @property {number} [speed] Cursor movement speed.
-     * @property {string} [ease] Timing function of cursor movement.
-     * @property {boolean} [overwrite] Overwrite or remain cursor position when `mousemove` event happens.
-     * @property {number} [skewing] Default skewing factor.
-     * @property {number} [skewingText] Skewing effect factor in a text state.
-     * @property {number} [skewingIcon] Skewing effect factor in a icon state.
-     * @property {number} [skewingMedia] Skewing effect factor in a media (image/video) state.
-     * @property {number} [skewingDelta] Skewing effect base delta.
+     * @property {string} [ease] Timing function of cursor movement. See GSAP easing.
+     * @property {boolean} [overwrite] Overwrite or preserve the cursor position when `mousemove` fires.
+     * @property {number} [skewing] Default "skewing" factor.
+     * @property {number} [skewingText] Skew effect factor in the text state. Set `0` to disable skew in this mode.
+     * @property {number} [skewingIcon] Skew effect factor in the icon state. Set `0` to disable skew in this mode.
+     * @property {number} [skewingMedia] Skew effect factor in the media state. Set `0` to disable.
+     * @property {number} [skewingDelta] Skew effect base delta.
      * @property {number} [skewingDeltaMax] Skew effect max delta.
      * @property {number} [stickDelta] Stick effect delta.
-     * @property {number} [showTimeout] Delay before show.
-     * @property {boolean} [hideOnLeave] Hide the cursor when mouse leave events target.
-     * @property {number} [hideTimeout] Delay before hiding. It should be equal to the CSS hide animation time.
-     * @property {number[]} [initialPos] Array (x, y) of initial cursor position.
+     * @property {number} [showTimeout] Delay before showing. May be useful for the spawn animation to work properly.
+     * @property {boolean} [hideOnLeave] Hide the cursor when the mouse leaves the event target.
+     * @property {number} [hideTimeout] Hiding delay. Should be equal to the CSS hide animation time.
+     * @property {number[]} [initialPos] Array (x, y) of the initial cursor position.
      */
 
     /**
-     * Register GSAP animation library.
+     * Register the GSAP animation library.
      *
      * @param {gsap} gsap GSAP library.
      */
@@ -55,7 +55,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Create cursor instance.
+     * Create a cursor instance.
      *
      * @param {MouseFollowerOptions} [options] Cursor options.
      */
@@ -120,7 +120,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Init cursor.
+     * Initialize the cursor.
      */
     init() {
         if (!this.el) this.create();
@@ -132,7 +132,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Create cursor DOM element and append to container.
+     * Create the cursor DOM element and append it to the container.
      */
     create() {
         this.el = document.createElement('div');
@@ -159,7 +159,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Create GSAP setters.
+     * Create the GSAP setters.
      */
     createSetter() {
         this.setter = {
@@ -176,7 +176,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Create and attach events.
+     * Create and attach event listeners.
      */
     bind() {
         this.event.mouseleave = () => this.hide();
@@ -259,9 +259,9 @@ export default class MouseFollower {
     }
 
     /**
-     * Render the cursor in a new position.
+     * Render the cursor at a new position.
      *
-     * @param {boolean} [force=false] Force render.
+     * @param {boolean} [force=false] Force rendering.
      */
     render(force) {
         if (force !== true && (this.vel.y === 0 || this.vel.x === 0)) {
@@ -288,7 +288,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Show cursor.
+     * Show the cursor.
      */
     show() {
         this.trigger('show');
@@ -301,7 +301,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Hide cursor.
+     * Hide the cursor.
      */
     hide() {
         this.trigger('hide');
@@ -311,9 +311,9 @@ export default class MouseFollower {
     }
 
     /**
-     * Toggle cursor.
+     * Toggle the cursor.
      *
-     * @param {boolean} [force] Force state.
+     * @param {boolean} [force] Force the visibility state.
      */
     toggle(force) {
         if (force === true || force !== false && !this.visible) {
@@ -324,7 +324,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Add state/states to the cursor.
+     * Add one or more states to the cursor.
      *
      * @param {string} state State name.
      */
@@ -336,7 +336,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Remove state/states from cursor.
+     * Remove one or more states from the cursor.
      *
      * @param {string} state State name.
      */
@@ -348,10 +348,10 @@ export default class MouseFollower {
     }
 
     /**
-     * Toggle cursor state.
+     * Toggle the cursor state.
      *
      * @param {string} state State name.
-     * @param {boolean} [force] Force state.
+     * @param {boolean} [force] Force the state.
      */
     toggleState(state, force) {
         if (force === true || force !== false && !this.el.classList.contains(state)) {
@@ -362,7 +362,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Set factor of skewing effect.
+     * Set the skewing effect factor.
      *
      * @param {number} value Skewing factor.
      */
@@ -371,14 +371,14 @@ export default class MouseFollower {
     }
 
     /**
-     * Reverts skewing factor to default.
+     * Revert the skewing factor to the default.
      */
     removeSkewing() {
         this.gsap.to(this, {skewing: this.options.skewing});
     }
 
     /**
-     * Stick cursor to the element.
+     * Stick the cursor to an element.
      *
      * @param {string|HTMLElement} element Element or selector.
      */
@@ -392,14 +392,14 @@ export default class MouseFollower {
     }
 
     /**
-     * Unstick cursor from the element.
+     * Unstick the cursor from the element.
      */
     removeStick() {
         this.stick = false;
     }
 
     /**
-     * Transform cursor to text mode with a given string.
+     * Transform the cursor to text mode with the given string.
      *
      * @param {string} text Text.
      */
@@ -410,7 +410,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Reverts cursor from text mode.
+     * Revert the cursor from text mode.
      */
     removeText() {
         this.removeState(this.options.textState);
@@ -418,7 +418,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Transform cursor to svg icon mode.
+     * Transform the cursor to SVG icon mode.
      *
      * @param {string} name Icon identifier.
      * @param {string} [style=""] Additional SVG styles.
@@ -431,7 +431,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Reverts cursor from icon mode.
+     * Revert the cursor from icon mode.
      */
     removeIcon() {
         this.removeState(this.options.iconState);
@@ -439,7 +439,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Transform cursor to media mode with a given element.
+     * Transform the cursor to media mode with the given element.
      *
      * @param {HTMLElement} element Element.
      */
@@ -454,7 +454,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Revert cursor from media mode.
+     * Revert the cursor from media mode.
      */
     removeMedia() {
         clearTimeout(this.mediaInt);
@@ -464,9 +464,9 @@ export default class MouseFollower {
     }
 
     /**
-     * Transform cursor to image mode.
+     * Transform the cursor to image mode.
      *
-     * @param {string} url Image url.
+     * @param {string} url Image URL.
      */
     setImg(url) {
         if (!this.mediaImg) this.mediaImg = new Image();
@@ -475,16 +475,16 @@ export default class MouseFollower {
     }
 
     /**
-     * Reverts cursor from image mode.
+     * Revert the cursor from image mode.
      */
     removeImg() {
         this.removeMedia();
     }
 
     /**
-     * Transform cursor to video mode.
+     * Transform the cursor to video mode.
      *
-     * @param {string} url Video url.
+     * @param {string} url Video URL.
      */
     setVideo(url) {
         if (!this.mediaVideo) {
@@ -502,7 +502,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Reverts cursor from video mode.
+     * Revert the cursor from video mode.
      */
     removeVideo() {
         if (this.mediaVideo && this.mediaVideo.readyState > 2) this.mediaVideo.pause();
@@ -510,10 +510,10 @@ export default class MouseFollower {
     }
 
     /**
-     * Attach an event handler function.
+     * Attach an event handler.
      *
      * @param {string} event Event name.
-     * @param {function} callback Callback.
+     * @param {function} callback Callback function.
      */
     on(event, callback) {
         if (!(this.events[event] instanceof Array)) this.off(event);
@@ -524,7 +524,7 @@ export default class MouseFollower {
      * Remove an event handler.
      *
      * @param {string} event Event name.
-     * @param {function} [callback] Callback.
+     * @param {function} [callback] Callback function.
      */
     off(event, callback) {
         if (callback) {
@@ -538,7 +538,7 @@ export default class MouseFollower {
      * Execute all handlers for the given event type.
      *
      * @param {string} event Event name.
-     * @param params Extra parameters.
+     * @param {...*} params Extra parameters.
      */
     trigger(event, ...params) {
         if (!this.events[event]) return;
@@ -546,7 +546,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Get cursor options from data attribute of a given element.
+     * Get cursor options from the data attributes of a given element.
      *
      * @param {HTMLElement} element Element.
      * @return {Object} Options.
@@ -565,7 +565,7 @@ export default class MouseFollower {
     }
 
     /**
-     * Destroy cursor instance.
+     * Destroy the cursor instance.
      */
     destroy() {
         this.trigger('destroy');
