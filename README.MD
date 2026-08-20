@@ -82,6 +82,7 @@ The following options with defaults are available:
 const cursor = new MouseFollower({
     el: null,
     container: document.body,
+    eventsTarget: document.body,
     className: 'mf-cursor',
     innerClassName: 'mf-cursor-inner',
     textClassName: 'mf-cursor-text',
@@ -123,6 +124,7 @@ const cursor = new MouseFollower({
 | :--- | :---: | :--- |
 | `el` | `string` &vert; `HTMLElement` | Existed cursor element. If not specified, the cursor will be created automatically. |
 | `container` |  `string` &vert; `HTMLElement` | Cursor container. Body by default. |
+| `eventsTarget` |  `string` &vert; `HTMLElement` | Target for cursor events. Body by default. |
 | `className` |  `string` | Cursor root element class name. |
 | `innerClassName` |  `string` | Inner element class name. |
 | `textClassName` |  `string` | Text element class name. |
@@ -151,7 +153,7 @@ const cursor = new MouseFollower({
 | `skewingDeltaMax` | `number` | Skew effect max delta. Set `0` to disable skew in this mode. |
 | `stickDelta` | `number` | Stick effect delta. |
 | `showTimeout` | `number` | Delay before show. May be useful for the spawn animation to work properly. |
-| `hideOnLeave` | `boolean` | Hide the cursor when mouse leave container. |
+| `hideOnLeave` | `boolean` | Hide the cursor when mouse leave events target. |
 | `hideTimeout` | `number` | Hiding delay. Should be equal to the CSS hide animation time. |
 | `initialPos` | `array` | Array (x, y) of initial cursor position. |
 

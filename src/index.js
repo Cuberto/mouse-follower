@@ -11,6 +11,7 @@ export default class MouseFollower {
      * @typedef {Object} MouseFollowerOptions
      * @property {string|HTMLElement|null} [el] Existed cursor element.
      * @property {string|HTMLElement|null} [container] Cursor container.
+     * @property {string|HTMLElement|null} [eventsTarget] Events target.
      * @property {string} [className] Cursor root element class name.
      * @property {string} [innerClassName] Inner element class name.
      * @property {string} [textClassName] Text element class name.
@@ -39,7 +40,7 @@ export default class MouseFollower {
      * @property {number} [skewingDeltaMax] Skew effect max delta.
      * @property {number} [stickDelta] Stick effect delta.
      * @property {number} [showTimeout] Delay before show.
-     * @property {boolean} [hideOnLeave] Hide the cursor when mouse leave container.
+     * @property {boolean} [hideOnLeave] Hide the cursor when mouse leave events target.
      * @property {number} [hideTimeout] Delay before hiding. It should be equal to the CSS hide animation time.
      * @property {number[]} [initialPos] Array (x, y) of initial cursor position.
      */
@@ -63,6 +64,7 @@ export default class MouseFollower {
         this.options = Object.assign({}, {
             el: null,
             container: document.body,
+            eventsTarget: document.body,
             className: 'mf-cursor',
             innerClassName: 'mf-cursor-inner',
             textClassName: 'mf-cursor-text',
@@ -106,6 +108,8 @@ export default class MouseFollower {
             document.querySelector(this.options.el) : this.options.el;
         this.container = typeof (this.options.container) === 'string' ?
             document.querySelector(this.options.container) : this.options.container;
+        this.eventsTarget = typeof (this.options.eventsTarget) === 'string' ?
+            document.querySelector(this.options.eventsTarget) : this.options.eventsTarget;
         this.skewing = this.options.skewing;
         this.pos = {x: this.options.initialPos[0], y: this.options.initialPos[1]};
         this.vel = {x: 0, y: 0};
@@ -191,7 +195,7 @@ export default class MouseFollower {
             });
         };
         this.event.mouseover = (e) => {
-            for (let target = e.target; target && target !== this.container; target = target.parentNode) {
+            for (let target = e.target; target && target !== this.eventsTarget; target = target.parentNode) {
                 if (e.relatedTarget && target.contains(e.relatedTarget)) break;
 
                 for (let state in this.options.stateDetection) {
@@ -211,7 +215,7 @@ export default class MouseFollower {
             }
         };
         this.event.mouseout = (e) => {
-            for (let target = e.target; target && target !== this.container; target = target.parentNode) {
+            for (let target = e.target; target && target !== this.eventsTarget; target = target.parentNode) {
                 if (e.relatedTarget && target.contains(e.relatedTarget)) break;
 
                 for (let state in this.options.stateDetection) {
@@ -232,25 +236,25 @@ export default class MouseFollower {
         };
 
         if (this.options.hideOnLeave) {
-            this.container.addEventListener('mouseleave', this.event.mouseleave, {passive: true});
+            this.eventsTarget.addEventListener('mouseleave', this.event.mouseleave, {passive: true});
         }
         if (this.options.visible) {
-            this.container.addEventListener('mouseenter', this.event.mouseenter, {passive: true});
+            this.eventsTarget.addEventListener('mouseenter', this.event.mouseenter, {passive: true});
         }
         if (this.options.activeState) {
-            this.container.addEventListener('mousedown', this.event.mousedown, {passive: true});
-            this.container.addEventListener('mouseup', this.event.mouseup, {passive: true});
+            this.eventsTarget.addEventListener('mousedown', this.event.mousedown, {passive: true});
+            this.eventsTarget.addEventListener('mouseup', this.event.mouseup, {passive: true});
         }
-        this.container.addEventListener('mousemove', this.event.mousemove, {passive: true});
+        this.eventsTarget.addEventListener('mousemove', this.event.mousemove, {passive: true});
         if (this.options.visible) {
-            this.container.addEventListener('mousemove', this.event.mousemoveOnce, {
+            this.eventsTarget.addEventListener('mousemove', this.event.mousemoveOnce, {
                 passive: true,
                 once: true,
             });
         }
         if (this.options.stateDetection || this.options.dataAttr) {
-            this.container.addEventListener('mouseover', this.event.mouseover, {passive: true});
-            this.container.addEventListener('mouseout', this.event.mouseout, {passive: true});
+            this.eventsTarget.addEventListener('mouseover', this.event.mouseover, {passive: true});
+            this.eventsTarget.addEventListener('mouseout', this.event.mouseout, {passive: true});
         }
     }
 
@@ -566,14 +570,14 @@ export default class MouseFollower {
     destroy() {
         this.trigger('destroy');
         this.gsap.ticker.remove(this.ticker);
-        this.container.removeEventListener('mouseleave', this.event.mouseleave);
-        this.container.removeEventListener('mouseenter', this.event.mouseenter);
-        this.container.removeEventListener('mousedown', this.event.mousedown);
-        this.container.removeEventListener('mouseup', this.event.mouseup);
-        this.container.removeEventListener('mousemove', this.event.mousemove);
-        this.container.removeEventListener('mousemove', this.event.mousemoveOnce);
-        this.container.removeEventListener('mouseover', this.event.mouseover);
-        this.container.removeEventListener('mouseout', this.event.mouseout);
+        this.eventsTarget.removeEventListener('mouseleave', this.event.mouseleave);
+        this.eventsTarget.removeEventListener('mouseenter', this.event.mouseenter);
+        this.eventsTarget.removeEventListener('mousedown', this.event.mousedown);
+        this.eventsTarget.removeEventListener('mouseup', this.event.mouseup);
+        this.eventsTarget.removeEventListener('mousemove', this.event.mousemove);
+        this.eventsTarget.removeEventListener('mousemove', this.event.mousemoveOnce);
+        this.eventsTarget.removeEventListener('mouseover', this.event.mouseover);
+        this.eventsTarget.removeEventListener('mouseout', this.event.mouseout);
         if (this.el) {
             this.container.removeChild(this.el);
             this.el = null;
