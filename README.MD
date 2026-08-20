@@ -290,6 +290,18 @@ or via a data attribute:
 <div data-cursor-icon="arrow-left">Hover me!</div>
 ```
 
+You can also pass an SVG element directly:
+
+```js
+const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+icon.setAttribute('viewBox', '0 0 24 24');
+icon.innerHTML = '<path d="M12 5l7 7-7 7M5 12h14"/>';
+
+el.addEventListener('mouseenter', () => {
+    cursor.setIcon(icon);
+});
+```
+
 You can also use any SVG icon by URL:
 
 ```js
