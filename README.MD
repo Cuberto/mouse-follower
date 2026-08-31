@@ -78,7 +78,7 @@ The following options and defaults are available:
 const cursor = new MouseFollower({
     el: null,
     container: document.body,
-    eventsTarget: document.body,
+    eventsTarget: document.documentElement,
     className: 'mf-cursor',
     innerClassName: 'mf-cursor-inner',
     textClassName: 'mf-cursor-text',
@@ -121,7 +121,7 @@ const cursor = new MouseFollower({
 | :--- | :---: | :--- |
 | `el` | `string` &vert; `HTMLElement` | Existing cursor element. If not specified, the cursor will be created automatically. |
 | `container` |  `string` &vert; `HTMLElement` | Cursor container. Body by default. |
-| `eventsTarget` |  `string` &vert; `HTMLElement` | Target for cursor events. Body by default. |
+| `eventsTarget` |  `string` &vert; `HTMLElement` | Target for cursor events. Root document element by default. |
 | `className` |  `string` | Cursor root element class name. |
 | `innerClassName` |  `string` | Inner element class name. |
 | `textClassName` |  `string` | Text element class name. |

@@ -11,7 +11,7 @@ export default class MouseFollower {
      * @typedef {Object} MouseFollowerOptions
      * @property {string|HTMLElement|null} [el] Existing cursor element, created automatically if not specified.
      * @property {string|HTMLElement|null} [container] Cursor container. Body by default.
-     * @property {string|HTMLElement|null} [eventsTarget] Target for cursor events. Body by default.
+     * @property {string|HTMLElement|null} [eventsTarget] Target for cursor events. Root document element by default.
      * @property {string} [className] Cursor root element class name.
      * @property {string} [innerClassName] Inner element class name.
      * @property {string} [textClassName] Text element class name.
@@ -65,7 +65,7 @@ export default class MouseFollower {
         this.options = Object.assign({}, {
             el: null,
             container: document.body,
-            eventsTarget: document.body,
+            eventsTarget: document.documentElement,
             className: 'mf-cursor',
             innerClassName: 'mf-cursor-inner',
             textClassName: 'mf-cursor-text',
